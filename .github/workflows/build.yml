@@ -5,6 +5,9 @@ on:
     branches:
       - main  # Trigger action on push to the main branch
 
+permissions:
+  contents: write  # Allow write access to repository contents
+
 jobs:
   build:
     runs-on: ubuntu-latest
