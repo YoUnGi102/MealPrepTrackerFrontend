@@ -4,7 +4,7 @@ import { RootState } from '../../app/store';
 import IngredientSearchBar from '../../components/IngredientSearchBar';
 
 const IngredientsPage: React.FC = () => {
-  const { selectedIngredient, error } = useSelector((state: RootState) => state.ingredients);
+  const { selectedIngredient } = useSelector((state: RootState) => state.ingredients);
 
   return (
     <div>
