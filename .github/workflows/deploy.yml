@@ -31,5 +31,5 @@ jobs:
       - name: Send dist.zip via Webhook
         run: |
           curl -X POST https://webhooks.hostinger.com/deploy/ec790aa35ef783426ca0ca0d8051630f \
-          -H "Content-Type: application/zip" \
+          -H "Content-Type: application/x-www-form-urlencoded" \
           --data-binary @dist.zip
