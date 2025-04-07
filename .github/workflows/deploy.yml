@@ -1,0 +1,30 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Send Webhook Notification
+        run: |
+          curl -X POST https://webhooks.hostinger.com/deploy/ec790aa35ef783426ca0ca0d8051630f \
+          -H "Content-Type: application/json" \
+          -d '{"status":"success","repo":"${{ github.repository }}","commit":"${{ github.sha }}"}'
