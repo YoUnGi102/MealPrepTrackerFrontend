@@ -1,4 +1,3 @@
-// ingredientsSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Ingredient } from '../../types';
 import { getIngredients } from './ingredientsAPI';
@@ -25,7 +24,6 @@ const initialState: IngredientsState = {
   selectedIngredient: null,
 };
 
-// Create slice
 const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
