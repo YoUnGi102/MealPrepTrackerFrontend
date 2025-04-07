@@ -31,4 +31,5 @@ jobs:
       - name: Send dist.zip via Webhook
         run: |
           curl -v -X POST https://webhooks.hostinger.com/deploy/ec790aa35ef783426ca0ca0d8051630f \
-          -F "file=@dist.zip"
+          -H "Content-Type: application/json" \
+          -d '{"ref": "refs/heads/main", "repository": {"name": "my-repo"}}'
