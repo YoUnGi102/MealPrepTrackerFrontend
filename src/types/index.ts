@@ -1,10 +1,7 @@
-export interface Ingredient {
-  id: string;
-  name: string;
-  type: 'VEGETABLE' | 'MEAT' | 'FRUIT' | 'DAIRY' | 'GRAIN';
-  protein: number;
-  fat: number;
-  carbs: number;
-  sugar: number;
-  image: string;
+export interface User {
+  username: string;
+  password: string;
 }
+
+export * from './Ingredient'
+export * from './Auth'

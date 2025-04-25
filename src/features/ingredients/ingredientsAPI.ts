@@ -1,10 +1,25 @@
-const backendURL = import.meta.env.VITE_BACKEND_URL;
+import * as API from  '../../utils/apiUrls'
+import api from '../../api'
+import { IngredientRequest } from '@/types';
 
 export const getIngredients = async (query: string) => {
-  console.log(`Fetching Ingredients from ${backendURL}`);
-  const response = await fetch(`${backendURL}/api/ingredients?name=${query}`);
-  if (!response.ok) {
+  console.log('Fetching Ingredients');
+  try {
+    const response = await api.get(API.GET_INGREDIENTS(query));
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch ingredients', error);
     throw new Error('Failed to fetch ingredients');
   }
-  return response.json();
 };
+
+export const postIngredient = async (ingredient: IngredientRequest) => {
+  console.log('Adding ingredient');
+  try {
+    const response = await api.post(API.POST_INGREDIENT, ingredient);
+    return response.data;
+  } catch (error) {
+    console.error('Failed to add ingredient', error);
+    throw new Error('Failed to add ingredient')
+  }
+}

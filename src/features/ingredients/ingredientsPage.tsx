@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import IngredientSearchBar from '../../components/IngredientSearchBar';
+import AddIngredientModal from './add/AddIngredientModal';
 
 const IngredientsPage: React.FC = () => {
   const { selectedIngredient } = useSelector((state: RootState) => state.ingredients);
@@ -13,7 +14,8 @@ const IngredientsPage: React.FC = () => {
       {selectedIngredient && (
         <div style={{ marginTop: '2rem' }}>
           <h2>Selected Ingredient</h2>
-          {/* <img src={selectedIngredient.image} alt={selectedIngredient.name} width="80" /> */}
+          selectedIngredient.image &&
+            <img src={selectedIngredient.image} alt={selectedIngredient.name} width="80" />
           <div>{selectedIngredient.name}</div>
           <div>Type: {selectedIngredient.type}</div>
           <div>Protein: {selectedIngredient.protein}g</div>
@@ -22,6 +24,8 @@ const IngredientsPage: React.FC = () => {
           <div>Sugar: {selectedIngredient.sugar}g</div>
         </div>
       )}
+
+      <AddIngredientModal />
     </div>
   );
 };

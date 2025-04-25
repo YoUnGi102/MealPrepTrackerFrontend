@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchIngredients, setSelectedIngredient } from '../features/ingredients/ingredientsSlice';
 import { Ingredient } from '../types';
-import { RootState } from '../app/store';
+import { AppDispatch, RootState } from '../app/store';
 import './IngredientSearchBar.css';
 
 const IngredientSearchBar: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
