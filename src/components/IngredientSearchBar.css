@@ -1,13 +1,19 @@
-/* Style the search input field */
+/* Container for the search component */
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .search-input {
-  width: 90%;
+  width: 100%;
   padding: 10px 15px;
   font-size: 16px;
   border: 2px solid #ddd;
   border-radius: 8px;
   box-sizing: border-box;
   transition: border-color 0.3s ease;
-  margin: 10px 5%;
 }
 
 .search-input:focus {
@@ -17,7 +23,7 @@
 
 /* Style the suggestions dropdown */
 .suggestions-list {
-  width: 90%;
+  width: 100%;
   max-height: 250px;
   overflow-y: auto;
   border: 1px solid #ddd;
@@ -27,7 +33,11 @@
   position: absolute;
   background-color: white;
   z-index: 999;
-  margin: 0 5%;
+  margin: 5px 0;
+}
+
+.suggestions-list li:hover {
+  background-color: #f4f4f4;
 }
 
 /* Style each list item */
@@ -37,19 +47,42 @@
   transition: background-color 0.3s ease;
 }
 
-.suggestions-list li:hover {
-  background-color: #f4f4f4;
+/* Flex layout for each suggestion item */
+.suggestions-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
 }
 
-li.suggestions-item {
-  list-style: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Thumbnail image for ingredient */
+.ingredient-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 25%;
 }
 
-/* Style when loading */
-.loading {
-  text-align: center;
-  color: #888;
-  font-size: 14px;
+@media only screen and (max-width: 600px) {
+  .ingredient-img {
+    margin-right: 20px;
+  }
+}
+
+/* Text container for ingredient name and info */
+.suggestion-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ingredient name styling */
+.ingredient-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Nutritional info text */
+.ingredient-info {
+  font-size: 13px;
+  color: #555;
 }

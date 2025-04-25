@@ -13,9 +13,9 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { addIngredient } from "../ingredientsSlice";
-import './AddIngredientModal.css'
 import { IngredientRequest } from "@/types";
 import { AppDispatch } from "@/app/store";
+import './AddIngredientModal.css'
 
 export const AddIngredientModal = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -42,7 +42,12 @@ export const AddIngredientModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Ingredient</Button>
+      <Button
+        className="add-btn"
+        variant="default"
+      >
+      +
+      </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -72,9 +77,9 @@ export const AddIngredientModal = () => {
         ))}
 
         <DialogFooter className="mt-4">
-        <Button className="Button" onClick={handleSubmit}>Save</Button>
+        <Button className="Button" variant="default" onClick={handleSubmit}>Save</Button>
           <DialogClose asChild>
-            <Button className="Button" type="button" variant="outline">
+            <Button className="Button" type="button" variant="destructive">
               Cancel
             </Button>
           </DialogClose>

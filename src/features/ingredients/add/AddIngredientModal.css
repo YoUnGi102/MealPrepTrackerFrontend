@@ -1,0 +1,16 @@
+.add-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 50px;
+  border-radius: 100%;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 2.5rem;
+  background-color: green;
+  border: 0px;
+}
+
+.add-btn:active {
+  border: 0px;
+}

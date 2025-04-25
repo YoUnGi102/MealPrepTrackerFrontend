@@ -7,6 +7,7 @@ import IngredientsPage from '../features/ingredients/ingredientsPage';
 import MainPage from '../components/pages/mainPage';
 import ProtectedRoute from '../features/auth/ProtectedRoute';
 import LoginForm from '../features/auth/LoginForm';
+import './App.css'
 
 const App = () => {
   return (

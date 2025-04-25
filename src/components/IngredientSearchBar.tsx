@@ -1,3 +1,4 @@
+// No changes to imports
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchIngredients, setSelectedIngredient } from '../features/ingredients/ingredientsSlice';
@@ -12,8 +13,6 @@ const IngredientSearchBar: React.FC = () => {
 
   const { ingredients, loading } = useSelector((state: RootState) => state.ingredients);
 
-  console.log(ingredients);
-
   useEffect(() => {
     const debounce = setTimeout(() => {
       if (searchQuery) {
@@ -23,7 +22,6 @@ const IngredientSearchBar: React.FC = () => {
         setShowSuggestions(false);
       }
     }, 300);
-
     return () => clearTimeout(debounce);
   }, [searchQuery, dispatch]);
 
@@ -33,12 +31,12 @@ const IngredientSearchBar: React.FC = () => {
 
   const handleSelect = (ingredient: Ingredient) => {
     dispatch(setSelectedIngredient(ingredient));
-    setSearchQuery(ingredient.name);
+    setSearchQuery("");
     setShowSuggestions(false);
   };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="search-container">
       <input
         className="search-input"
         type="text"
@@ -51,23 +49,22 @@ const IngredientSearchBar: React.FC = () => {
 
       {showSuggestions && ingredients.length > 0 && (
         <ul className="suggestions-list">
-          {ingredients.map(ingredient => {
+          {ingredients.map((ingredient) => {
             const calories = ingredient.protein * 4 + ingredient.carbs * 4 + ingredient.fat * 9;
             return (
               <li
                 className="suggestions-item"
                 key={ingredient.id}
                 onClick={() => handleSelect(ingredient)}
-                style={{
-                  padding: '0.5rem',
-                  borderBottom: '1px solid #eee',
-                  cursor: 'pointer',
-                }}
               >
-                <div style={{ fontWeight: 'bold' }}>{ingredient.name}</div>
-                <div style={{ fontSize: '0.85rem', color: '#555' }}>
-                  Protein: {ingredient.protein}g | Carbs: {ingredient.carbs}g | Fat:{' '}
-                  {ingredient.fat}g | Calories: {calories.toFixed(0)}
+                {ingredient.image && (
+                  <img src={ingredient.image} alt={ingredient.name} className="ingredient-img" />
+                )}
+                <div className="suggestion-text">
+                  <div className="ingredient-name">{ingredient.name}</div>
+                  <div className="ingredient-info">
+                    Protein: {ingredient.protein}g | Carbs: {ingredient.carbs}g | Fat: {ingredient.fat}g | Calories: {calories.toFixed(0)}
+                  </div>
                 </div>
               </li>
             );
