@@ -9,7 +9,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: localStorage.getItem('token'),
+  token: null,
   loading: false,
   error: null,
 };
@@ -19,9 +19,7 @@ export const loginUser = createAsyncThunk<string, User>(
   async (credentials: User, thunkAPI) => {
     try {
       const response = await login(credentials);
-      console.log(response);
-      localStorage.setItem('token', response.data.token);
-      return response.data;
+      return response.token;
     } catch (error) {
       return thunkAPI.rejectWithValue(error || 'Login failed');
     }
