@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -102,13 +102,6 @@ button:focus-visible {
 }
 .navbar a:hover {
   color: #646cff;
-}
-
-.title {
-  width: auto;
-  margin: 0;
-  font-size: 3rem;
-  text-align: center;
 }
 
 @theme inline {

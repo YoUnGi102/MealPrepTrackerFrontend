@@ -14,3 +14,7 @@
 .add-btn:active {
   border: 0px;
 }
+
+button.ring-offset-background {
+  display: none;
+}

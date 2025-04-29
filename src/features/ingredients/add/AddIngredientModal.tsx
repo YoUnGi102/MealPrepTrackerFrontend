@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import {
   Dialog,
   DialogTrigger,
@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-  DialogClose,
+  DialogClose
 } from "@/components/ui/dialog";
 import { useDispatch } from "react-redux";
 import { Label } from "@/components/ui/label";
@@ -42,12 +42,12 @@ export const AddIngredientModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button
-        className="add-btn"
-        variant="default"
-      >
-      +
-      </Button>
+        <Button
+          className="add-btn"
+          variant="default"
+        >
+        +
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -61,7 +61,8 @@ export const AddIngredientModal = () => {
           ["fat", "Fat (g)"],
           ["carbs", "Carbs (g)"],
           ["sugar", "Sugar (g)"],
-          ["calories", "Calories (kCal)"]
+          ["calories", "Calories (kCal)"],
+          ["image", "Image URL"]
         ].map(([key, label]) => (
           <div key={key} className="grid gap-1">
             <Label htmlFor={key}>{label}</Label>
@@ -79,7 +80,7 @@ export const AddIngredientModal = () => {
         <DialogFooter className="mt-4">
         <Button className="Button" variant="default" onClick={handleSubmit}>Save</Button>
           <DialogClose asChild>
-            <Button className="Button" type="button" variant="destructive">
+            <Button data-state={'closed'} className="Button" type="button" variant="destructive">
               Cancel
             </Button>
           </DialogClose>

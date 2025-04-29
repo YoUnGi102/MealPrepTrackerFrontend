@@ -60,17 +60,21 @@
   height: 40px;
   object-fit: cover;
   border-radius: 6px;
-  margin-right: 25%;
+  margin-right: 20%;
 }
 
 @media only screen and (max-width: 600px) {
+  .search-container {
+    width: 100%;
+  }
   .ingredient-img {
-    margin-right: 20px;
+    margin-right: 15%;
   }
 }
 
 /* Text container for ingredient name and info */
 .suggestion-text {
+  width: 50%;
   display: flex;
   flex-direction: column;
 }

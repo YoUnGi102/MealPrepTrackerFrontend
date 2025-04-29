@@ -53,13 +53,13 @@ const IngredientSearchBar: React.FC = () => {
             const calories = ingredient.protein * 4 + ingredient.carbs * 4 + ingredient.fat * 9;
             return (
               <li
-                className="suggestions-item"
+                className={"suggestions-item"}
                 key={ingredient.id}
                 onClick={() => handleSelect(ingredient)}
               >
-                {ingredient.image && (
+                {ingredient.image ? (
                   <img src={ingredient.image} alt={ingredient.name} className="ingredient-img" />
-                )}
+                ): <div className="ingredient-img"></div>}
                 <div className="suggestion-text">
                   <div className="ingredient-name">{ingredient.name}</div>
                   <div className="ingredient-info">
