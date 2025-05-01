@@ -6,7 +6,7 @@ import store, { persistor } from './store';
 import IngredientsPage from '../features/ingredients/ingredientsPage';
 import MainPage from '../components/pages/mainPage';
 import ProtectedRoute from '../features/auth/ProtectedRoute';
-import LoginForm from '../features/auth/LoginForm';
+import LoginDialog from '../features/auth/LoginDialog';
 import './App.css'
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -17,8 +17,8 @@ const App = () => {
         <Router>
           <div>
             <h1 className={'title'}>MealPrepTracker</h1>
+            <LoginDialog />
             <Routes>
-              <Route path='/login' element={<LoginForm/>}/>
               <Route
                 path="/ingredients"
                 element={
