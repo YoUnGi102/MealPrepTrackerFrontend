@@ -1,0 +1,196 @@
+.AddMealPage {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ingredient-list,
+.ingredient-search {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  background-color: #fff;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* .ingredient-list:hover,
+.ingredient-search:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  border-color: #007bff;
+} */
+
+.meal-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  margin-top: 20px;
+}
+
+.meal-table th,
+.meal-table td {
+  padding: 12px 15px;
+  text-align: center;
+  /* border: 1px solid #ddd; */
+  word-wrap: break-word;
+}
+
+.meal-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.meal-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.meal-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.meal-table tfoot {
+  background-color: #f9fafb; /* light gray background */
+  font-weight: 600;
+  border-top: 2px solid #e5e7eb; /* subtle top border */
+}
+
+.meal-table tfoot tr {
+  height: 50px;
+}
+
+.meal-table tfoot td {
+  padding: 12px;
+  text-align: center;
+  color: #111827; /* dark text */
+  font-size: 1rem;
+}
+
+.meal-table tfoot td:first-child {
+  text-align: left;
+  padding-left: 16px;
+  font-weight: bold;
+  color: #374151; /* slightly softer dark */
+}
+
+.meal-table tfoot {
+  background-color: #f9fafb; /* light gray background */
+  font-weight: 600;
+  border-top: 2px solid #e5e7eb; /* subtle top border */
+}
+
+.meal-table tfoot tr {
+  height: 50px;
+}
+
+.meal-table tfoot td {
+  padding: 12px;
+  text-align: center;
+  color: #111827; /* dark text */
+  font-size: 1rem;
+}
+
+.meal-table tfoot td:first-child {
+  text-align: left;
+  padding-left: 16px;
+  font-weight: bold;
+  color: #374151; /* slightly softer dark */
+}
+
+.amount-input {
+  width: 120px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f9f9f9;
+  float: left;
+}
+
+.amount-input:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+.remove-btn {
+  background-color: darkred;
+}
+
+.save-btn {
+  background-color: green;
+  width: 100%;
+  float: right;
+}
+
+@media (max-width: 1200px) {
+  .AddMealPage {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .meal-table th,
+  .meal-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .ingredient-list,
+  .ingredient-search {
+    flex: 1;
+    min-width: 100%;
+  }
+
+  .amount-input {
+    width: 100px;
+  }
+
+  .meal-table tbody tr {
+    display: block;
+  }
+
+  .meal-table td {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px; /* Adds spacing between rows */
+  }
+
+  .meal-table td:first-child {
+    font-weight: bold;
+  }
+
+  .meal-table td:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Title (1st row) */
+  .meal-table td:nth-child(1) {
+    font-weight: bold;
+  }
+
+  /* Macros (2nd row) */
+  .meal-table td:nth-child(2),
+  .meal-table td:nth-child(3),
+  .meal-table td:nth-child(4),
+  .meal-table td:nth-child(5),
+  .meal-table td:nth-child(6) {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  /* Input and Remove Button (3rd row) */
+  .meal-table td:nth-child(7),
+  .meal-table td:nth-child(8) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

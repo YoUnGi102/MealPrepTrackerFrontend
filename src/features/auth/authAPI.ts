@@ -1,7 +1,10 @@
-import * as API from  '../../utils/apiUrls'
-import api from '../../api'
+import * as API from '../../utils/apiUrls';
+import api from '../../api';
 
-export const login = async (credentials: {username: string; password: string}) => {
+export const login = async (credentials: {
+  username: string;
+  password: string;
+}) => {
   console.log('Fetching Ingredients');
   try {
     const response = await api.post(API.LOGIN, credentials);

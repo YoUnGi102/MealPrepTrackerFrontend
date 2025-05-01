@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {login} from './authAPI'
+import { login } from './authAPI';
 import { User } from '@/types';
 
 interface AuthState {
@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk<string, User>(
     } catch (error) {
       return thunkAPI.rejectWithValue(error || 'Login failed');
     }
-  }
+  },
 );
 
 const authSlice = createSlice({

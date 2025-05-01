@@ -3,5 +3,6 @@ export interface User {
   password: string;
 }
 
-export * from './Ingredient'
-export * from './Auth'
+export * from './Meal';
+export * from './Ingredient';
+export * from './Auth';

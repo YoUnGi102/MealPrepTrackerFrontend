@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Ingredient, IngredientRequest } from '../../types';
-import { getIngredients, postIngredient } from './ingredientsAPI';
+import { getIngredients, postIngredient } from './ingredientAPI';
 
 export const fetchIngredients = createAsyncThunk<Ingredient[], string>(
   'ingredients/fetchIngredients',
@@ -15,8 +15,8 @@ export const addIngredient = createAsyncThunk<Ingredient, IngredientRequest>(
   async (data: IngredientRequest) => {
     const response = await postIngredient(data);
     return response.data;
-  }
-)
+  },
+);
 
 export interface IngredientsState {
   ingredients: Ingredient[];
@@ -40,9 +40,9 @@ const ingredientsSlice = createSlice({
       state.selectedIngredient = action.payload;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(fetchIngredients.pending, state => {
+      .addCase(fetchIngredients.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -54,7 +54,7 @@ const ingredientsSlice = createSlice({
         state.error = action.error.message || 'Something went wrong';
         state.loading = false;
       })
-      .addCase(addIngredient.pending, state => {
+      .addCase(addIngredient.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
@@ -66,7 +66,7 @@ const ingredientsSlice = createSlice({
       .addCase(addIngredient.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Something went wrong';
-      })
+      });
   },
 });
 
