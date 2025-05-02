@@ -16,7 +16,7 @@ const App = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          <div>
+          <div className="container">
             <h1 className={'title'}>MealPrepTracker</h1>
             <LoginDialog />
             <Routes>

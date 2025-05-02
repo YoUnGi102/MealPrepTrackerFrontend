@@ -7,7 +7,7 @@ export interface Ingredient {
   carbs: number;
   sugar: number;
   calories: number;
-  image: string;
+  image?: string;
 }
 
 export interface IngredientRequest {

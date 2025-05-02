@@ -28,8 +28,7 @@ const ReadonlySlider: React.FC<ReadonlySliderProps> = ({ value }) => {
         height: '1rem',
         position: 'relative',
         pointerEvents: 'none',
-      }}
-    >
+      }}>
       <SliderPrimitive.Track
         style={{
           backgroundColor: '#ddd',
@@ -37,8 +36,7 @@ const ReadonlySlider: React.FC<ReadonlySliderProps> = ({ value }) => {
           borderRadius: '999px',
           width: '100%',
           position: 'relative',
-        }}
-      >
+        }}>
         <SliderPrimitive.Range
           style={{
             backgroundColor: '#4caf50',
@@ -54,4 +52,4 @@ const ReadonlySlider: React.FC<ReadonlySliderProps> = ({ value }) => {
   );
 };
 
-export {Slider, ReadonlySlider}
+export { Slider, ReadonlySlider };

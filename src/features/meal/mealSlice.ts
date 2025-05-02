@@ -51,7 +51,7 @@ const mealsSlice = createSlice({
     },
     updateMealIngredient(state, action: PayloadAction<MealIngredient>) {
       state.mealIngredients.map((mi: MealIngredient) => {
-        if (mi.ingredient.id == action.payload.ingredient.id) {
+        if (mi.ingredient.id === action.payload.ingredient.id) {
           mi.quantity = action.payload.quantity;
           return mi;
         }
@@ -59,7 +59,6 @@ const mealsSlice = createSlice({
       });
     },
     removeMealIngredient(state, action: PayloadAction<Number>) {
-      console.log(action.payload);
       state.mealIngredients = state.mealIngredients.filter(
         (mi) => mi.ingredient.id != action.payload,
       );
