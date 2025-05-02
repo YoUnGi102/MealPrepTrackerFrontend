@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { Meal, MealIngredient, Ingredient } from '../../types';
+import { postMeal } from './mealAPI';
 
 // export const fetchIngredients = createAsyncThunk<Ingredient[], string>(
 //   'ingredients/fetchIngredients',
@@ -10,7 +11,7 @@ import { Meal, MealIngredient, Ingredient } from '../../types';
 // );
 
 export const addMeal = createAsyncThunk<Meal, Meal>(
-  'ingredients/addIngredient',
+  'meals/addMeal',
   async (data: Meal) => {
     const response = await postMeal(data);
     return response.data;
@@ -64,34 +65,34 @@ const mealsSlice = createSlice({
       );
     },
   },
-  //   extraReducers: builder => {
-  //     builder
-  //       .addCase(fetchIngredients.pending, state => {
-  //         state.loading = true;
-  //         state.error = null;
-  //       })
-  //       .addCase(fetchIngredients.fulfilled, (state, action) => {
-  //         state.ingredients = action.payload;
-  //         state.loading = false;
-  //       })
-  //       .addCase(fetchIngredients.rejected, (state, action) => {
-  //         state.error = action.error.message || 'Something went wrong';
-  //         state.loading = false;
-  //       })
-  //       .addCase(addIngredient.pending, state => {
-  //         state.loading = true;
-  //         state.error = null;
-  //       })
-  //       .addCase(addIngredient.fulfilled, (state, action) => {
-  //         state.loading = false;
-  //         state.error = null;
-  //         state.selectedIngredient = action.payload as Ingredient;
-  //       })
-  //       .addCase(addIngredient.rejected, (state, action) => {
-  //         state.loading = false;
-  //         state.error = action.error.message || 'Something went wrong';
-  //       })
-  //   },
+  extraReducers: (builder) => {
+    builder
+      //       .addCase(fetchIngredients.pending, state => {
+      //         state.loading = true;
+      //         state.error = null;
+      //       })
+      //       .addCase(fetchIngredients.fulfilled, (state, action) => {
+      //         state.ingredients = action.payload;
+      //         state.loading = false;
+      //       })
+      //       .addCase(fetchIngredients.rejected, (state, action) => {
+      //         state.error = action.error.message || 'Something went wrong';
+      //         state.loading = false;
+      //       })
+      .addCase(addMeal.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addMeal.fulfilled, (state, action: PayloadAction<Meal>) => {
+        state.loading = false;
+        state.error = null;
+        state.selectedMeal = action.payload;
+      })
+      .addCase(addMeal.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Something went wrong';
+      });
+  },
 });
 
 export default mealsSlice.reducer;

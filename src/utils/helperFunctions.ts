@@ -1,4 +1,4 @@
-import { MealIngredient } from "@/types";
+import { MealIngredient } from '@/types';
 
 export const calculateTotalMacros = (ingredients: MealIngredient[]) => {
   return ingredients.reduce(
@@ -20,6 +20,6 @@ export const calculateTotalMacros = (ingredients: MealIngredient[]) => {
 
       return acc;
     },
-    { protein: 0, fat: 0, carbs: 0, sugar: 0, calories: 0 }
+    { protein: 0, fat: 0, carbs: 0, sugar: 0, calories: 0 },
   );
 };

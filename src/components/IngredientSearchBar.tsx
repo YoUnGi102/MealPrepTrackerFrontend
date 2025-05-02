@@ -55,10 +55,6 @@ const IngredientSearchBar: React.FC = () => {
       {showSuggestions && ingredients.length > 0 && (
         <ul className="suggestions-list">
           {ingredients.map((ingredient) => {
-            const calories =
-              ingredient.protein * 4 +
-              ingredient.carbs * 4 +
-              ingredient.fat * 9;
             return (
               <li
                 className={'suggestions-item'}
@@ -77,7 +73,8 @@ const IngredientSearchBar: React.FC = () => {
                   <div className="ingredient-name">{ingredient.name}</div>
                   <div className="ingredient-info">
                     Protein: {ingredient.protein}g | Carbs: {ingredient.carbs}g
-                    | Fat: {ingredient.fat}g | Calories: {calories.toFixed(0)}
+                    | Fat: {ingredient.fat}g | Calories: {ingredient.calories}{' '}
+                    kCal
                   </div>
                 </div>
               </li>

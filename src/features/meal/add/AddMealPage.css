@@ -1,196 +1,248 @@
-.AddMealPage {
-  width: 100%;
+.add-meal-page {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  padding: 20px;
 }
 
-.ingredient-list,
 .ingredient-search {
   flex: 1;
-  min-width: 300px;
-  padding: 20px;
+  margin: 20px;
+}
+
+.ingredient-list {
+  flex: 2;
+  margin: 20px;
+}
+
+.ingredient-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredient-list-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
   border: 1px solid #ccc;
+  margin-bottom: 10px;
   border-radius: 8px;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
-  background-color: #fff;
-  transition:
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-}
-
-/* .ingredient-list:hover,
-.ingredient-search:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  border-color: #007bff;
-} */
-
-.meal-table {
-  width: 100%;
-  border-collapse: collapse;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-  margin-top: 20px;
-}
-
-.meal-table th,
-.meal-table td {
-  padding: 12px 15px;
-  text-align: center;
-  /* border: 1px solid #ddd; */
-  word-wrap: break-word;
-}
-
-.meal-table th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-.meal-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.meal-table tr:hover {
-  background-color: #f1f1f1;
+.ingredient-header {
+  display: flex;
+  justify-content: space-between;
 }
 
-.meal-table tfoot {
-  background-color: #f9fafb; /* light gray background */
-  font-weight: 600;
-  border-top: 2px solid #e5e7eb; /* subtle top border */
+.ingredient-header > * {
+  margin: 0 10px;
+  min-width: 40px;
 }
 
-.meal-table tfoot tr {
-  height: 50px;
+.ingredient-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.meal-table tfoot td {
-  padding: 12px;
-  text-align: center;
-  color: #111827; /* dark text */
-  font-size: 1rem;
+.ingredient-image {
+  display: inline;
+  max-width: 40px;
+  margin-right: 10px;
+  padding-bottom: 2.5px;
 }
 
-.meal-table tfoot td:first-child {
-  text-align: left;
-  padding-left: 16px;
+.ingredient-name {
   font-weight: bold;
-  color: #374151; /* slightly softer dark */
+  font-size: 1.2em;
 }
 
-.meal-table tfoot {
-  background-color: #f9fafb; /* light gray background */
-  font-weight: 600;
-  border-top: 2px solid #e5e7eb; /* subtle top border */
+.ingredient-macro {
+  font-size: 1em;
+  margin: 5px 0;
 }
 
-.meal-table tfoot tr {
-  height: 50px;
-}
-
-.meal-table tfoot td {
-  padding: 12px;
-  text-align: center;
-  color: #111827; /* dark text */
-  font-size: 1rem;
-}
-
-.meal-table tfoot td:first-child {
-  text-align: left;
-  padding-left: 16px;
-  font-weight: bold;
-  color: #374151; /* slightly softer dark */
+.ingredient-input-remove {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .amount-input {
-  width: 120px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  text-align: center;
-  background-color: #f9f9f9;
-  float: left;
-}
-
-.amount-input:focus {
-  border-color: #007bff;
-  outline: none;
-  background-color: #fff;
+  width: 100px;
+  padding: 5px;
 }
 
 .remove-btn {
-  background-color: darkred;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background-color: #e60000;
 }
 
 .save-btn {
-  background-color: green;
   width: 100%;
-  float: right;
+  background-color: green;
+  margin-top: 10px;
+  grid-column: 1 / -1;
 }
 
-@media (max-width: 1200px) {
-  .AddMealPage {
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .add-meal-page {
+    display: flex;
+    justify-content: space-between;
     flex-direction: column-reverse;
-    gap: 10px;
+    padding: 20px;
   }
 
-  .meal-table th,
-  .meal-table td {
-    padding: 8px 10px;
-    font-size: 12px;
-  }
-
-  .ingredient-list,
-  .ingredient-search {
+  .ingredient-search,
+  .ingredient-list {
     flex: 1;
-    min-width: 100%;
+  }
+
+  .ingredient-list-item {
+    flex-direction: column;
+  }
+
+  .ingredient-input-remove {
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: 10px;
+  }
+
+  .ingredient-details {
+    text-align: center;
+    display: flex;
+  }
+
+  .ingredient-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* All spans default inline */
+  .ingredient-details > span {
+    flex: 1 1 auto;
+  }
+
+  .ingredient-details {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Adjust to your design */
+    grid-template-rows: auto auto auto;
+  }
+
+  /* Row 1: First child spans full width */
+  .ingredient-details > span:nth-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  /* Row 2: Children 2 to 6 in the second row */
+  .ingredient-details > span:nth-child(n + 2):nth-child(-n + 6) {
+    grid-column: span 1;
+  }
+
+  /* Row 3: Children 7 and 8 */
+  .ingredient-details > span:nth-child(7),
+  .ingredient-details > span:nth-child(8) {
+    grid-column: span 1;
+  }
+}
+
+/* SMALL DEVICES */
+
+@media (max-width: 766px) {
+  .ingredient-header {
+    margin-top: 10px;
+  }
+
+  .ingredient-list {
+    width: 100%;
+    margin: 0;
+  }
+
+  .ingredient-input-remove {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 10px;
   }
 
   .amount-input {
-    width: 100px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
-  .meal-table tbody tr {
-    display: block;
+  .ingredient-list-item {
+    margin: 20px 0;
   }
 
-  .meal-table td {
-    display: block;
+  .ingredient-macros {
+    margin: 20px 0;
+  }
+
+  .ingredient-macros-item {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto auto auto;
+    margin: 5px 0;
+  }
+
+  .ingredient-macros-item > td:nth-child(1),
+  td:nth-child(3) {
+    grid-column: span 1;
+  }
+
+  .ingredient-macros-item > td:nth-child(2) {
+    grid-column: span 3;
     width: 100%;
-    margin-bottom: 10px; /* Adds spacing between rows */
+    padding: 10px 0;
+    margin: 0;
   }
 
-  .meal-table td:first-child {
+  .amount-label {
     font-weight: bold;
+    padding: 5px;
   }
 
-  .meal-table td:last-child {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .amount-input {
+    width: 100%;
   }
 
-  /* Title (1st row) */
-  .meal-table td:nth-child(1) {
-    font-weight: bold;
+  .ingredient-input-remove {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
   }
 
-  /* Macros (2nd row) */
-  .meal-table td:nth-child(2),
-  .meal-table td:nth-child(3),
-  .meal-table td:nth-child(4),
-  .meal-table td:nth-child(5),
-  .meal-table td:nth-child(6) {
-    display: inline-block;
-    margin-right: 10px;
+  .ingredient-input-remove > *:nth-child(1),
+  *:nth-child(2) {
+    grid-column: span 2;
   }
 
-  /* Input and Remove Button (3rd row) */
-  .meal-table td:nth-child(7),
-  .meal-table td:nth-child(8) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .ingredient-input-remove > *:nth-child(3) {
+    grid-column: span 1;
+    padding: 5px;
+  }
+
+  .total-macros {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+
+  .total-macros > *:nth-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  .total-macros > *:nth-child(n + 2):nth-child(-n + 6) {
+    grid-column: span 1;
   }
 }

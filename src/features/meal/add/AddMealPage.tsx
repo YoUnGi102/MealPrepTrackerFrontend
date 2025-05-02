@@ -12,6 +12,8 @@ import {
 } from '../mealSlice';
 import { Button } from '@/components/ui/button';
 import { calculateTotalMacros } from '@/utils/helperFunctions';
+import Slider, { ReadonlySlider } from '@/components/ui/slider';
+import MacroBar from '@/components/ui/ProgressBar';
 
 const AddMealPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -38,9 +40,8 @@ const AddMealPage: React.FC = () => {
   }, [selectedIngredient]);
 
   useEffect(() => {
-    console.log("Updated mealIngredients:", mealIngredients);
-    setTotalMacros(calculateTotalMacros(mealIngredients))
-  }, [mealIngredients])
+    setTotalMacros(calculateTotalMacros(mealIngredients));
+  }, [mealIngredients]);
 
   const handleIngredientInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -62,81 +63,98 @@ const AddMealPage: React.FC = () => {
   };
 
   const handleAddMeal = () => {
-    
+    // Add logic for saving the meal if needed
   };
 
   return (
-    <div className="AddMealPage">
+    <div className="add-meal-page">
       <div className="ingredient-list">
         <h2>Meal</h2>
 
-        <table className="meal-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Protein</th>
-              <th>Fat</th>
-              <th>Carbs</th>
-              <th>Sugar</th>
-              <th>Calories</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {mealIngredients.map((mi: MealIngredient) => (
-              <tr key={mi.ingredient.id}>
-                <td>{mi.ingredient.name}</td>
-                <td>{mi.ingredient.protein}</td>
-                <td>{mi.ingredient.fat}</td>
-                <td>{mi.ingredient.carbs}</td>
-                <td>{mi.ingredient.sugar}</td>
-                <td>{mi.ingredient.calories}</td>
-                <td>
-                  <Input
-                  type='number'
-                    value={mi.quantity}
-                    className="amount-input"
-                    onChange={handleIngredientInputChange}
-                    placeholder="100"
-                    id={String(mi.ingredient.id)}
-                  />
-                  <p>g</p>
-                </td>
-                <td>
-                  <Button
-                    className={'remove-btn'}
-                    variant={'destructive'}
-                    onClick={handleRemoveIngredient}
-                    id={String(mi.ingredient.id)}>
-                    X
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr key={'total'}>
-              <td colSpan={1}>
-                <strong>TOTAL</strong>
-              </td>
-              <td>{totalMacros.protein}</td>
-              <td>{totalMacros.fat}</td>
-              <td>{totalMacros.carbs}</td>
-              <td>{totalMacros.sugar}</td>
-              <td>{totalMacros.calories}</td>
-              <td colSpan={2}>
+        {/* List view for meal ingredients */}
+        <ul className="ingredient-list-ul">
+          {mealIngredients.map((mi: MealIngredient) => (
+            <li key={mi.ingredient.id} className="ingredient-list-item">
+              <div className="ingredient-header">
+                <span className="ingredient-name">
+                  {mi.ingredient.image ? (
+                    <img
+                      className="ingredient-image"
+                      src={mi.ingredient.image}></img>
+                  ) : (
+                    <div className="ingredient-image"></div>
+                  )}
+                  {mi.ingredient.name}
+                </span>
+
                 <Button
-                  className={'save-btn'}
+                  className={'remove-btn'}
                   variant={'destructive'}
-                  onClick={handleAddMeal}>
-                  Save
+                  onClick={handleRemoveIngredient}
+                  id={String(mi.ingredient.id)}>
+                  X
                 </Button>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+              </div>
+
+              <table className='ingredient-macros'>
+                <tbody>
+                    {
+                        [
+                            ['Protein', mi.ingredient.protein, 'green'],
+                            ['Fat', mi.ingredient.fat, 'red'],
+                            ['Carbs', mi.ingredient.carbs, 'blue'],
+                            ['Sugar', mi.ingredient.sugar, 'black'],
+                        ].map((macro) => 
+                            <tr className='ingredient-macros-item' key={macro[0]}>
+                                <td>{macro[0]}</td>
+                                <td><MacroBar value={Number(macro[1])}/></td>
+                                <td>{macro[1]}</td>
+                            </tr>
+                        )
+
+                    }
+                    <tr className='ingredient-macros-item'>
+                        <td>Calories</td>
+                        <td><MacroBar value={Number(mi.ingredient.calories)/9} color={'blue'}/></td>
+                        <td>{mi.ingredient.calories}</td>
+                    </tr>
+                </tbody>
+              </table>
+
+              <div className="ingredient-input-remove">
+                <p className="amount-label">Amount:</p>
+                <Input
+                  type="number"
+                  value={mi.quantity}
+                  className="amount-input"
+                  onChange={handleIngredientInputChange}
+                  placeholder="100"
+                  id={String(mi.ingredient.id)}
+                />
+                <p style={{textAlign: 'left'}}>g</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        {/* Total macros at the bottom */}
+        <div className="total-macros">
+          <strong>TOTAL</strong>
+          <span>Protein: {totalMacros.protein}g</span>
+          <span>Fat: {totalMacros.fat}g</span>
+          <span>Carbs: {totalMacros.carbs}g</span>
+          <span>Sugar: {totalMacros.sugar}g</span>
+          <span>Calories: {totalMacros.calories}</span>
+
+          <Button
+            className={'save-btn'}
+            variant={'destructive'}
+            onClick={handleAddMeal}>
+            Save
+          </Button>
+        </div>
       </div>
+
       <div className="ingredient-search">
         <h2>Search Ingredient</h2>
         <IngredientSearchBar />
