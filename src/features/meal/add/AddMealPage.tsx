@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../app/store';
 import { Meal, MealIngredient, TotalMacros } from '../../../types';
 import IngredientSearchBar from '../../../components/IngredientSearchBar';
-import { addMealIngredient } from '../mealSlice';
+import { addMeal, addMealIngredient } from '../mealSlice';
 import { Button } from '@/components/ui/button';
 import { calculateTotalMacros } from '@/utils/helperFunctions';
 import MealIngredientItem from '../MealIngredientItem';
 import './AddMealPage.css';
 import { Input } from '@/components/ui/input';
 import MacroSpinner from '@/components/ui/MacroSpinner';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const AddMealPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,7 +34,7 @@ const AddMealPage: React.FC = () => {
     if (selectedIngredient) {
       dispatch(addMealIngredient(selectedIngredient));
     }
-  }, [selectedIngredient]);
+  }, [selectedIngredient, dispatch]);
 
   useEffect(() => {
     setTotalMacros(calculateTotalMacros(mealIngredients));
@@ -51,46 +52,76 @@ const AddMealPage: React.FC = () => {
       image: '',
     };
 
-    console.log(meal);
+    dispatch(addMeal(meal));
   };
 
   return (
     <div className="add-meal-page">
-
-<div className="ingredient-search">
+      <div className="ingredient-search">
         <IngredientSearchBar />
       </div>
 
-        <div className="ingredient-list">
-          <div className="meal-name">
-            <h3>Name:</h3>
-            <Input
-              value={name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setName(e.currentTarget.value)
-              }
-              placeholder="New Meal"
-            />
-          </div>
+      <div className="ingredient-list">
+        <div className="meal-name">
+          <h3>Name:</h3>
+          <Input
+            value={name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.currentTarget.value)
+            }
+            placeholder="New Meal"
+          />
+        </div>
 
-          <div className="ingredient-list-scroll">
+        <div className="ingredient-list-scroll">
           <ul className="ingredient-list-ul">
             {mealIngredients.map((mi: MealIngredient) => (
               <MealIngredientItem key={mi.ingredient.id} mealIngredient={mi} />
             ))}
           </ul>
-          </div>
-          
-          <strong className='total-label'>Total Macros</strong>
-          <div className="total-macros">
-            <MacroSpinner label="Protein" unit={'g'} amount={totalMacros.protein} color="#22c55e" size={70}/>
-            <MacroSpinner label="Carbs" unit={'g'} amount={totalMacros.carbs} color="#3b82f6"  size={70}/>
-            <MacroSpinner label="Fat" unit={'g'} amount={totalMacros.fat} color="#ef4444" size={70} />
-            <MacroSpinner label="Sugar" unit={'g'}  amount={totalMacros.sugar} color="#3b82f6" size={70} />
-            <MacroSpinner label="Calories" unit={'kCal'} amount={totalMacros.calories} color="#ef4444"  size={70}/>
-          </div>
-          
-          <div className="meal-actions">
+        </div>
+
+        <strong className="total-label">Total Macros</strong>
+        <div className="total-macros">
+          <MacroSpinner
+            label="Protein"
+            unit={'g'}
+            amount={totalMacros.protein}
+            color="#22c55e"
+            size={70}
+          />
+          <MacroSpinner
+            label="Carbs"
+            unit={'g'}
+            amount={totalMacros.carbs}
+            color="#3b82f6"
+            size={70}
+          />
+          <MacroSpinner
+            label="Fat"
+            unit={'g'}
+            amount={totalMacros.fat}
+            color="#ef4444"
+            size={70}
+          />
+          <MacroSpinner
+            label="Sugar"
+            unit={'g'}
+            amount={totalMacros.sugar}
+            color="#3b82f6"
+            size={70}
+          />
+          <MacroSpinner
+            label="Calories"
+            unit={'kCal'}
+            amount={totalMacros.calories}
+            color="#ef4444"
+            size={70}
+          />
+        </div>
+
+        <div className="meal-actions">
+          <div>
             <p>Portions:</p>
             <Input
               type="number"
@@ -100,15 +131,16 @@ const AddMealPage: React.FC = () => {
               }
               placeholder="6"
             />
-
-            <Button
-              className={'save-btn'}
-              variant={'destructive'}
-              onClick={handleAddMeal}>
-              Add Meal
-            </Button>
           </div>
+
+          <Button
+            className={'save-btn'}
+            variant={'destructive'}
+            onClick={handleAddMeal}>
+            Add Meal
+          </Button>
         </div>
+      </div>
     </div>
   );
 };

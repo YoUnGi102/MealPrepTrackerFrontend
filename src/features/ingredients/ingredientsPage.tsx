@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import IngredientSearchBar from '../../components/IngredientSearchBar';
 import AddIngredientModal from './add/AddIngredientModal';
-import './ingredientsPage.css';
+import './IngredientsPage.css';
 
 const IngredientsPage: React.FC = () => {
   const { selectedIngredient } = useSelector(

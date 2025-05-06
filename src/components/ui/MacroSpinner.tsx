@@ -6,7 +6,7 @@ type MacroSpinnerProps = {
   amount: number;
   color?: string; // foreground color
   size?: number; // diameter
-  unit?: string // g, kcal ...
+  unit?: string; // g, kcal ...
 };
 
 const MacroSpinner: React.FC<MacroSpinnerProps> = ({
@@ -15,17 +15,28 @@ const MacroSpinner: React.FC<MacroSpinnerProps> = ({
   amount,
   color = '#4ade80',
   size = 80,
-  unit = ''
+  unit = '',
 }) => {
   const strokeWidth = 8;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (amount / 100) * circumference;
+  const offset = circumference - (amount / total) * circumference;
 
   return (
-    <div style={{ margin: 'auto' ,display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div
+      style={{
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
       {/* Label above the spinner */}
-      <span style={{ fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '4px' }}>
+      <span
+        style={{
+          fontSize: '0.85rem',
+          fontWeight: 'bold',
+          marginBottom: '4px',
+        }}>
         {label}
       </span>
 
@@ -61,9 +72,8 @@ const MacroSpinner: React.FC<MacroSpinnerProps> = ({
           dominantBaseline="central"
           fill="#333"
           fontSize="12"
-          fontWeight="bold"
-        >
-          {`${amount}${unit && " " + unit}`}
+          fontWeight="bold">
+          {`${amount}${unit && ' ' + unit}`}
         </text>
       </svg>
     </div>

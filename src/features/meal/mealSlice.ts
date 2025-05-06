@@ -58,7 +58,7 @@ const mealsSlice = createSlice({
         return mi;
       });
     },
-    removeMealIngredient(state, action: PayloadAction<Number>) {
+    removeMealIngredient(state, action: PayloadAction<number>) {
       state.mealIngredients = state.mealIngredients.filter(
         (mi) => mi.ingredient.id != action.payload,
       );

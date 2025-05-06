@@ -1,6 +1,5 @@
 // MealIngredientItem.tsx
 import React from 'react';
-import { MealIngredient } from '@/types';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import MacroBar from '@/components/ui/MacroBar';
