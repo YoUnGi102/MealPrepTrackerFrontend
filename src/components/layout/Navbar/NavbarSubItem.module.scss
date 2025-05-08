@@ -1,0 +1,10 @@
+.navbarSubItem a {
+  padding: 10px 15px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f0f0f0; // Light hover effect
+  }
+}

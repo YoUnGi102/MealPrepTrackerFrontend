@@ -1,3 +1,3 @@
 interface ReactProps {
-    className?: string;
+  className?: string;
 }

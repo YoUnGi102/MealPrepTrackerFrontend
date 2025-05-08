@@ -1,23 +1,63 @@
-@use '../../../styles/variables' as *;
+@use '../../../styles/abstracts/variables' as *;
 
 .logo {
-    fill: red; // changes fill color
-    width: 40px;
-    height: 40px;
+  width: 60px;
+  height: 60px;
 }
 
 .navbar {
-    background-color: $primary-color;
-    height: 60px;
-    border-radius: 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 20px;
+  background-color: $primary-color;
+  height: 60px;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .navbarContainer {
-    display: flex;
-    flex-direction: row;
-    justify-items: right;
+  display: flex;
+  flex-direction: row;
+  justify-items: right;
+  column-gap: 10px;
 }
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .navbarContainer {
+    display: flex;
+    gap: 1.5rem;
+  
+    @media (max-width: 768px) {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      width: 100%;
+      padding: 1rem 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  
+    &.active {
+      display: flex;
+    }
+  }
+  
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+  

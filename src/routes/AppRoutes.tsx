@@ -36,8 +36,7 @@ const AppRoutes = () => {
     <Suspense fallback={<Spinner />}>
       <Routes>
         {routes.map(({ path, element, isPublic }: RouteRule) => {
-          if(!isPublic) 
-            element = <ProtectedRoute>{element}</ProtectedRoute>
+          if (!isPublic) element = <ProtectedRoute>{element}</ProtectedRoute>;
           return <Route path={path} element={element} />;
         })}
       </Routes>

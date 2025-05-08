@@ -1,9 +1,59 @@
-@use '../../../styles/mixins' as *;
+@use '../../../styles/abstracts/mixins' as *;
+@use '../../../styles/abstracts/variables' as *;
 
 .navbarItem {
+//   @include btn-style;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbarItem > * {
+  align-self: center;
+  justify-self: center;
+}
+
+.navbarItem a {
     @include btn-style;
+    height: 100%;
+    min-width: 60px;
+    border: none;
+    border-radius: 0;
+    margin: 0;
 }
 
 .navbarItem svg {
-    width: 100%
+  width: 100%;
+}
+
+.navbarItem {
+  position: relative;
+  cursor: pointer;
+
+  &:hover .submenu {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.navbarItemText {
+  display: flex;
+  column-gap: 10px;
+}
+.navbarItemText * {
+  align-self: center;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  min-width: 150px;
 }

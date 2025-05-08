@@ -103,8 +103,8 @@ $secondary-color: #fff;
 
 ```scss
 // HomePage.module.scss
-@use '../../styles/variables' as v;
-@use '../../styles/mixins' as *;
+@use '../../styles/abstracts/variables' as v;
+@use '../../styles/abstracts/mixins' as *;
 
 .homePage {
   @include flex-container;

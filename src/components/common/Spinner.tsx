@@ -1,8 +1,9 @@
 const Spinner = () => {
-    return <>
-        <img src='loader.gif' />
+  return (
+    <>
+      <img src="loader.gif" />
     </>
-    
-}
+  );
+};
 
 export default Spinner;
