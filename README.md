@@ -198,6 +198,6 @@ npm run build
 
 ## 👨‍💻 Author
 
-Built with ❤️ by Tomáš Greš.
+Built by Tomáš Greš.
 
 Feel free to reach out for collaboration or feedback!
