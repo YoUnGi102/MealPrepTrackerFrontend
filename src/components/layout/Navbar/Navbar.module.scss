@@ -1,4 +1,6 @@
+@use '../../../styles/abstracts/mixins' as *;
 @use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/breakpoints' as *;
 
 .logo {
   width: 60px;
@@ -12,6 +14,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 }
 
 .navbarContainer {
@@ -19,45 +22,38 @@
   flex-direction: row;
   justify-items: right;
   column-gap: 10px;
+
+  @include respond-below ($breakpoint-md) {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  &.active {
+    display: flex;
+  }
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1rem;
-    background-color: #fff;
-    position: relative;
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  align-self: center;
+  padding: 20px;
+  color: $secondary-color;
+
+  @include respond-below ($breakpoint-md) {
+    display: block;
   }
-  
-  .navbarContainer {
-    display: flex;
-    gap: 1.5rem;
-  
-    @media (max-width: 768px) {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: white;
-      width: 100%;
-      padding: 1rem 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-  
-    &.active {
-      display: flex;
-    }
+
+  &:hover {
+    color: $primary-color;
+    background-color: $secondary-color;
   }
-  
-  .hamburger {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  
-    @media (max-width: 768px) {
-      display: block;
-    }
-  }
-  
+}
