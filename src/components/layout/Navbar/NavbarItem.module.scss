@@ -9,7 +9,7 @@
   padding: 0;
   margin: 0;
 
-  @include respond-below($breakpoint-md){
+  @include respond-below($breakpoint-md) {
     flex-direction: column;
   }
 }
@@ -20,22 +20,22 @@
 }
 
 .navbarItem a {
-    @include btn-style;
-    display: flex;
-    height: 100%;
-    min-width: 60px;
-    border: none;
-    border-radius: 0;
-    margin: 0;
+  @include btn-style;
+  display: flex;
+  height: 100%;
+  min-width: 60px;
+  border: none;
+  border-radius: 0;
+  margin: 0;
 
-    @include respond-below($breakpoint-md){
-        width: 100%;
-        justify-content: center;
+  @include respond-below($breakpoint-md) {
+    width: 100%;
+    justify-content: center;
 
-        & > svg {
-            width: auto;
-        }
+    & > svg {
+      width: auto;
     }
+  }
 }
 
 .navbarItem svg {
@@ -71,7 +71,7 @@
   z-index: 100;
   min-width: 150px;
 
-  @include respond-below($breakpoint-md){
+  @include respond-below($breakpoint-md) {
     position: relative;
     flex-direction: column;
     z-index: inherit;

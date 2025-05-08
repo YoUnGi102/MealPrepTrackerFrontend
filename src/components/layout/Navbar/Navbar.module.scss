@@ -23,7 +23,7 @@
   justify-items: right;
   column-gap: 10px;
 
-  @include respond-below ($breakpoint-md) {
+  @include respond-below($breakpoint-md) {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -31,7 +31,7 @@
     left: 0;
     background-color: white;
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   &.active {
@@ -48,7 +48,7 @@
   padding: 20px;
   color: $secondary-color;
 
-  @include respond-below ($breakpoint-md) {
+  @include respond-below($breakpoint-md) {
     display: block;
   }
 

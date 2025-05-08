@@ -6,7 +6,7 @@ import styles from './HomePage.module.scss';
 const HomePage: React.FC = () => {
   return (
     <div className={styles.homePage}>
-      <Logo />
+      <Logo fill={"green"} isFull={true}/>
       <h2>Welcome to the main page of our app!</h2>
       <Link className={styles.link} to="/ingredients">
         Search Ingredients

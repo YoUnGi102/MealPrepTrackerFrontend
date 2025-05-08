@@ -10,7 +10,6 @@ import MealIngredientItem from '../MealIngredientItem';
 import './AddMealPage.css';
 import { Input } from '@/components/ui/input';
 import MacroSpinner from '@/components/ui/MacroSpinner';
-import { Checkbox } from '@/components/ui/checkbox';
 
 const AddMealPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
