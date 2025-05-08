@@ -3,10 +3,10 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Trigger action on push to the main branch
+      - main
 
 permissions:
-  contents: write  # Allow write access to repository contents
+  contents: write
 
 jobs:
   build:
@@ -33,7 +33,7 @@ jobs:
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          BRANCH: build  # Target branch for the push
-          FOLDER: dist  # Update this to the 'dist' directory where build files are located
+          BRANCH: build
+          FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MESSAGE: "Deploy: Build pushed to build branch"
+          MESSAGE: 'Deploy: Build pushed to build branch'

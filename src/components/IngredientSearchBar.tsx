@@ -1,7 +1,10 @@
 // No changes to imports
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchIngredients, setSelectedIngredient } from '../features/ingredients/ingredientsSlice';
+import {
+  fetchIngredients,
+  setSelectedIngredient,
+} from '../features/ingredients/ingredientsSlice';
 import { Ingredient } from '../types';
 import { AppDispatch, RootState } from '../app/store';
 import './IngredientSearchBar.css';
@@ -11,7 +14,9 @@ const IngredientSearchBar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const { ingredients, loading } = useSelector((state: RootState) => state.ingredients);
+  const { ingredients, loading } = useSelector(
+    (state: RootState) => state.ingredients,
+  );
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -31,7 +36,7 @@ const IngredientSearchBar: React.FC = () => {
 
   const handleSelect = (ingredient: Ingredient) => {
     dispatch(setSelectedIngredient(ingredient));
-    setSearchQuery("");
+    setSearchQuery('');
     setShowSuggestions(false);
   };
 
@@ -50,20 +55,26 @@ const IngredientSearchBar: React.FC = () => {
       {showSuggestions && ingredients.length > 0 && (
         <ul className="suggestions-list">
           {ingredients.map((ingredient) => {
-            const calories = ingredient.protein * 4 + ingredient.carbs * 4 + ingredient.fat * 9;
             return (
               <li
-                className={"suggestions-item"}
+                className={'suggestions-item'}
                 key={ingredient.id}
-                onClick={() => handleSelect(ingredient)}
-              >
+                onClick={() => handleSelect(ingredient)}>
                 {ingredient.image ? (
-                  <img src={ingredient.image} alt={ingredient.name} className="ingredient-img" />
-                ): <div className="ingredient-img"></div>}
+                  <img
+                    src={ingredient.image}
+                    alt={ingredient.name}
+                    className="ingredient-img"
+                  />
+                ) : (
+                  <div className="ingredient-img"></div>
+                )}
                 <div className="suggestion-text">
                   <div className="ingredient-name">{ingredient.name}</div>
                   <div className="ingredient-info">
-                    Protein: {ingredient.protein}g | Carbs: {ingredient.carbs}g | Fat: {ingredient.fat}g | Calories: {calories.toFixed(0)}
+                    Protein: {ingredient.protein}g | Carbs: {ingredient.carbs}g
+                    | Fat: {ingredient.fat}g | Calories: {ingredient.calories}{' '}
+                    kCal
                   </div>
                 </div>
               </li>

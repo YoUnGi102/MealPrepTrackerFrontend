@@ -1,3 +1,3 @@
 export interface Auth {
-    token: string;
+  token: string;
 }

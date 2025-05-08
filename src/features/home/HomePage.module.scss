@@ -1,0 +1,14 @@
+@use '../../styles/abstracts/variables' as v;
+@use '../../styles/abstracts/mixins' as *;
+
+.homePage {
+  @include flex-container;
+}
+
+.homePage img {
+  justify-self: center;
+}
+
+.link {
+  @include btn-style;
+}

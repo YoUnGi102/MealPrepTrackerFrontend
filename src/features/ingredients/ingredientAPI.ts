@@ -1,5 +1,5 @@
-import * as API from  '../../utils/apiUrls'
-import api from '../../api'
+import * as API from '../../utils/apiUrls';
+import api from '../../api';
 import { IngredientRequest } from '@/types';
 
 export const getIngredients = async (query: string) => {
@@ -20,6 +20,6 @@ export const postIngredient = async (ingredient: IngredientRequest) => {
     return response.data;
   } catch (error) {
     console.error('Failed to add ingredient', error);
-    throw new Error('Failed to add ingredient')
+    throw new Error('Failed to add ingredient');
   }
-}
+};

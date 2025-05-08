@@ -1,0 +1,26 @@
+@use './variables' as *;
+
+@mixin flex-container(
+  $justify: flex-start,
+  $align: center,
+  $direction: column
+) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  gap: 20px;
+}
+
+@mixin btn-style {
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: 2px solid $primary-color;
+  padding: 10px;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $secondary-color;
+    color: $primary-color;
+  }
+}

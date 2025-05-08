@@ -5,6 +5,7 @@
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0;
   line-height: 1.5;
   font-weight: 400;
   background-color: #fff;
@@ -182,5 +183,12 @@ button:focus-visible {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@media (min-width: 766px) {
+  #root {
+    margin: 0;
+    padding: 0;
   }
 }
