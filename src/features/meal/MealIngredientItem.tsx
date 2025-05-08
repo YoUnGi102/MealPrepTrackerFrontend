@@ -7,6 +7,7 @@ import { removeMealIngredient, updateMealIngredient } from './mealSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
 import './MealIngredientItem.css';
+import NutrientIcons from '@/components/common/NutrientIcons';
 
 interface Props {
   mealIngredient: {
@@ -74,7 +75,9 @@ const MealIngredientItem: React.FC<Props> = ({ mealIngredient }) => {
         </Button>
       </div>
 
-      <table className="ingredient-macros">
+      <NutrientIcons macros={mealIngredient.ingredient} />
+
+      {/* <table className="ingredient-macros">
         <tbody>
           {[
             ['Protein', mealIngredient.ingredient.protein, 'green'],
@@ -97,7 +100,7 @@ const MealIngredientItem: React.FC<Props> = ({ mealIngredient }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
 
       <div className="ingredient-actions">
         <p className="amount-label">Amount:</p>

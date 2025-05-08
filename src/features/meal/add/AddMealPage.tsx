@@ -5,11 +5,12 @@ import { Meal, MealIngredient, TotalMacros } from '../../../types';
 import IngredientSearchBar from '../../../components/IngredientSearchBar';
 import { addMeal, addMealIngredient } from '../mealSlice';
 import { Button } from '@/components/ui/button';
-import { calculateTotalMacros } from '@/utils/helperFunctions';
+import { calculateMacrosPerPortion, calculateTotalMacros } from '@/utils/helperFunctions';
 import MealIngredientItem from '../MealIngredientItem';
 import './AddMealPage.css';
 import { Input } from '@/components/ui/input';
 import MacroSpinner from '@/components/ui/MacroSpinner';
+import NutrientIcons from '@/components/common/NutrientIcons';
 
 const AddMealPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -81,43 +82,10 @@ const AddMealPage: React.FC = () => {
         </div>
 
         <strong className="total-label">Total Macros</strong>
-        <div className="total-macros">
-          <MacroSpinner
-            label="Protein"
-            unit={'g'}
-            amount={totalMacros.protein}
-            color="#22c55e"
-            size={70}
-          />
-          <MacroSpinner
-            label="Carbs"
-            unit={'g'}
-            amount={totalMacros.carbs}
-            color="#3b82f6"
-            size={70}
-          />
-          <MacroSpinner
-            label="Fat"
-            unit={'g'}
-            amount={totalMacros.fat}
-            color="#ef4444"
-            size={70}
-          />
-          <MacroSpinner
-            label="Sugar"
-            unit={'g'}
-            amount={totalMacros.sugar}
-            color="#3b82f6"
-            size={70}
-          />
-          <MacroSpinner
-            label="Calories"
-            unit={'kCal'}
-            amount={totalMacros.calories}
-            color="#ef4444"
-            size={70}
-          />
-        </div>
+        <NutrientIcons macros={totalMacros} />
+
+        <strong className="total-label">Total Macros</strong>
+        <NutrientIcons macros={calculateMacrosPerPortion(totalMacros, portions)} />
 
         <div className="meal-actions">
           <div>

@@ -1,4 +1,6 @@
-import { MealIngredient, TotalMacros } from '@/types';
+import { Macros, MealIngredient, TotalMacros } from '@/types';
+
+const initialMacros: Macros = { protein: 0, fat: 0, carbs: 0, sugar: 0, calories: 0}
 
 export const calculateTotalMacros = (
   ingredients: MealIngredient[],
@@ -24,6 +26,19 @@ export const calculateTotalMacros = (
 
       return acc;
     },
-    { protein: 0, fat: 0, carbs: 0, sugar: 0, calories: 0, quantity: 0 },
+    {...initialMacros, quantity: 0 },
   );
 };
+
+export const calculateMacrosPerPortion = (macros: Macros, portions: number): Macros => {
+  if (portions <= 0) return initialMacros;
+
+  return {
+    protein: Math.round(macros.protein / portions),
+    fat: Math.round(macros.fat / portions),
+    carbs: Math.round(macros.carbs / portions),
+    sugar: Math.round(macros.sugar / portions),
+    calories: Math.round(macros.calories / portions),
+  };
+};
+

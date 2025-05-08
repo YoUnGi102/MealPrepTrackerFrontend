@@ -2,12 +2,14 @@ import Logo from '@/components/common/Logo';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.scss';
+import NutrientIcons from '@/components/common/NutrientIcons';
 
 const HomePage: React.FC = () => {
   return (
     <div className={styles.homePage}>
       <Logo fill={"green"} isFull={true}/>
       <h2>Welcome to the main page of our app!</h2>
+      
       <Link className={styles.link} to="/ingredients">
         Search Ingredients
       </Link>

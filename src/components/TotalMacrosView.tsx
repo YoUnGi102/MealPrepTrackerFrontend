@@ -2,6 +2,7 @@ import React from 'react';
 import { TotalMacros } from '@/types';
 import MacroBar from '@/components/ui/MacroBar';
 import './TotalMacrosView.css';
+import NutrientIcons from './common/NutrientIcons';
 
 interface Props {
   item: TotalMacros;
@@ -12,7 +13,9 @@ const itemView: React.FC<Props> = ({ item }) => {
     <div className="ingredient-item">
       <strong>TOTAL</strong>
 
-      <table className="ingredient-macros">
+      
+
+      {/* <table className="ingredient-macros">
         <tbody>
           {[
             ['Protein', item.protein, 'green'],
@@ -39,8 +42,8 @@ const itemView: React.FC<Props> = ({ item }) => {
               <td>{`${value} ${label != 'Calories' ? ' g' : ' kCal'}`}</td>
             </tr>
           ))}
-        </tbody>
-      </table>
+        </tbody> 
+      </table> */}
     </div>
   );
 };

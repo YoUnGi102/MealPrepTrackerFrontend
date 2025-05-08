@@ -1,0 +1,53 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+.container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: center;
+  }
+  
+  .emojiWrapper {
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    & * {
+        margin: 10px;
+    }
+  
+    &:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @include respond-below($breakpoint-md){
+        font-size: 0.75rem;
+        
+        & * {
+            margin: 0;
+        }
+    }
+  }
+  
+  .emoji {
+    display: inline-block;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: -75%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 1;
+    font-size: 0.875rem;
+  }
+  
