@@ -1,0 +1,3 @@
+interface ReactProps {
+    className?: string;
+}

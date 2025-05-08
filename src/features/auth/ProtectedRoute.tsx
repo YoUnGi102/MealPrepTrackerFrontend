@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { setRedirectUrl } from '../../features/redirect/redirectSlice';
 import { ReactNode, useEffect } from 'react';
+import UnauthorizedPage from './UnauthorizedPage';
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const token = useSelector((state: RootState) => state.auth.token);
@@ -14,7 +15,7 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     }
   }, [token, dispatch]);
 
-  return token ? children : null;
+  return token ? children : <UnauthorizedPage />;
 };
 
 export default ProtectedRoute;

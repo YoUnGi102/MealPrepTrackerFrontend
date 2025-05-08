@@ -1,0 +1,9 @@
+@use '../../../styles/mixins' as *;
+
+.navbarItem {
+    @include btn-style;
+}
+
+.navbarItem svg {
+    width: 100%
+}
