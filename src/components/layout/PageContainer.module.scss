@@ -1,8 +1,10 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
 .pageContainer {
   margin: 0 10%;
 }
 
-@media (max-width: 966px) {
+@include respond-below($breakpoint-xl){
   .pageContainer {
     margin: 0;
   }

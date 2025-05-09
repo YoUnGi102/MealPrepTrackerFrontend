@@ -1,16 +1,16 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../app/store';
-import { Meal, MealIngredient, TotalMacros } from '../../../types';
+import { Meal, MealIngredient, MealRequest, SaveOption, TotalMacros } from '../../../types';
 import IngredientSearchBar from '../../../components/IngredientSearchBar';
 import { addMeal, addMealIngredient } from '../mealSlice';
 import { Button } from '@/components/ui/button';
 import { calculateMacrosPerPortion, calculateTotalMacros } from '@/utils/helperFunctions';
 import MealIngredientItem from '../MealIngredientItem';
-import './AddMealPage.css';
 import { Input } from '@/components/ui/input';
-import MacroSpinner from '@/components/ui/MacroSpinner';
 import NutrientIcons from '@/components/common/NutrientIcons';
+import styles from './AddMealPage.module.scss';
+import SelectBox, {Option} from '@/components/ui/SelectBox';
 
 const AddMealPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,10 +25,19 @@ const AddMealPage: React.FC = () => {
   const [portions, setPortions] = useState(6);
   const [name, setName] = useState('New Meal');
 
+  const options: {label: string, value: SaveOption}[] = [
+    {label: 'Save as a meal only', value: SaveOption.MEAL },
+    {label: 'Save as a recipe only', value: SaveOption.RECIPE},
+    {label: 'Save as a meal and recipe', value: SaveOption.MEAL_RECIPE}
+  ]
+  const [saveOption, setSaveOption] = useState<Option>(options[0]);
+
   const { selectedIngredient } = useSelector(
     (state: RootState) => state.ingredients,
   );
-  const { mealIngredients } = useSelector((state: RootState) => state.meals);
+  const { mealCreate } = useSelector((state: RootState) => state.meals);
+
+  console.log(mealCreate);
 
   useEffect(() => {
     if (selectedIngredient) {
@@ -37,33 +46,34 @@ const AddMealPage: React.FC = () => {
   }, [selectedIngredient, dispatch]);
 
   useEffect(() => {
-    setTotalMacros(calculateTotalMacros(mealIngredients));
-  }, [mealIngredients]);
+    setTotalMacros(calculateTotalMacros(mealCreate.ingredients));
+  }, [mealCreate.ingredients]);
 
   const handleAddMeal = () => {
-    const meal: Meal = {
+    const meal: MealRequest = {
       name,
       type: 'MEAL',
       portions,
-      ingredients: mealIngredients.map((mi) => ({
+      ingredients: mealCreate.ingredients.map((mi) => ({
         ingredientId: mi.ingredient.id,
         quantity: mi.quantity,
       })),
       image: '',
+      saveOption: saveOption.value as SaveOption
     };
 
     dispatch(addMeal(meal));
   };
 
   return (
-    <div className="add-meal-page">
-      <div className="ingredient-search">
+    <div className={styles.addMealPage}>
+      <div className={styles.ingredientSearch}>
         <IngredientSearchBar />
       </div>
 
-      <div className="ingredient-list">
-        <div className="meal-name">
-          <h3>Name:</h3>
+      <div className={styles.mealContainer}>
+        <div className={styles.mealData}>
+          <p>Name:</p>
           <Input
             value={name}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -71,38 +81,40 @@ const AddMealPage: React.FC = () => {
             }
             placeholder="New Meal"
           />
+          <p>Portions:</p>
+          <Input
+            type="number"
+            value={String(portions).replace(/^0+(?!$)/, '')}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPortions(Number(e.currentTarget.value))
+            }
+            placeholder="6"
+          />
         </div>
 
-        <div className="ingredient-list-scroll">
-          <ul className="ingredient-list-ul">
-            {mealIngredients.map((mi: MealIngredient) => (
-              <MealIngredientItem key={mi.ingredient.id} mealIngredient={mi} />
-            ))}
-          </ul>
-        </div>
+        <ul className={styles.ingredientList}>
+          {mealCreate.ingredients.map((mi: MealIngredient) => (
+            <MealIngredientItem className={styles.ingredientListItem} key={mi.ingredient.id} mealIngredient={mi} />
+          ))}
+        </ul>
 
-        <strong className="total-label">Total Macros</strong>
+        <strong className={styles.totalLabel}>Total Macros</strong>
         <NutrientIcons macros={totalMacros} />
 
-        <strong className="total-label">Total Macros</strong>
+        <strong className={styles.totalLabel}>Total Macros (Per portion)</strong>
         <NutrientIcons macros={calculateMacrosPerPortion(totalMacros, portions)} />
 
-        <div className="meal-actions">
-          <div>
-            <p>Portions:</p>
-            <Input
-              type="number"
-              value={String(portions).replace(/^0+(?!$)/, '')}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPortions(Number(e.currentTarget.value))
-              }
-              placeholder="6"
-            />
-          </div>
+        <div className={styles.mealSaveActions}>
+          
+          <SelectBox
+            label=""
+            options={options}
+            selected={saveOption}
+            onChange={setSaveOption}
+          />
 
           <Button
-            className={'save-btn'}
-            variant={'destructive'}
+            className={styles.saveBtn}
             onClick={handleAddMeal}>
             Add Meal
           </Button>

@@ -1,0 +1,100 @@
+@use '../../../styles/abstracts/breakpoints' as *;
+@use '../../../styles/abstracts/variables' as *;
+
+.addMealPage {
+  margin: 0;
+}
+
+.ingredientSearch {
+  flex: 1;
+  margin: 20px;
+}
+
+.mealContainer {
+  flex: 2;
+  margin: 20px;
+}
+
+.ingredientList {
+  margin: 30px 0;
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 30px;
+
+  @include respond-below($breakpoint-lg){
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+.ingredientListItem {
+  grid-column: span 1;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.ingredient-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mealData {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+
+  > :nth-child(1) {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  > :nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  > :nth-child(2) {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
+
+  > :nth-child(4) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  > :nth-child(1), :nth-child(3) {
+    justify-self: start;
+    font-weight: bold;
+  }
+}
+
+.mealSaveActions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  > * {
+    width: 100%;
+    grid-column: span 1;
+    align-self: center;
+  }
+
+  > .saveBtn {
+    background-color: $primary-color;
+  }
+
+  @include respond-below($breakpoint-md){
+    > * {
+      grid-column: 2 span;
+    }
+  }
+
+}

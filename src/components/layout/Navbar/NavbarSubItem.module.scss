@@ -1,4 +1,11 @@
 .navbarSubItem {
   padding: 10px 15px;
   white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.navbarSubItem * {
+  align-self: center;
 }

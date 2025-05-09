@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/store';
 import './MealIngredientItem.css';
 import NutrientIcons from '@/components/common/NutrientIcons';
+import clsx from 'clsx';
 
 interface Props {
   mealIngredient: {
@@ -23,18 +24,19 @@ interface Props {
     };
     quantity: number;
   };
+  className?: string;
 }
 
-const MealIngredientItem: React.FC<Props> = ({ mealIngredient }) => {
+const MealIngredientItem: React.FC<Props> = ({ mealIngredient, className }) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { mealIngredients } = useSelector((state: RootState) => state.meals);
+  const { ingredients } = useSelector((state: RootState) => state.meals.mealCreate);
 
   const handleIngredientInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const id = Number(e.currentTarget.id);
-    const ingredient = mealIngredients.filter(
+    const ingredient = ingredients.filter(
       (mi) => mi.ingredient.id === id,
     )[0].ingredient;
     dispatch(
@@ -50,7 +52,7 @@ const MealIngredientItem: React.FC<Props> = ({ mealIngredient }) => {
   };
 
   return (
-    <div className="ingredient-item">
+    <div className={clsx("ingredient-item", className)} >
       <div className="ingredient-header">
         <span className="ingredient-name">
           {mealIngredient.ingredient.image ? (

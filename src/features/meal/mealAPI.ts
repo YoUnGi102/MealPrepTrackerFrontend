@@ -1,8 +1,8 @@
 import * as API from '../../utils/apiUrls';
 import api from '../../api';
-import { Meal } from '@/types';
+import { Meal, MealRequest } from '@/types';
 
-export const postMeal = async (meal: Meal) => {
+export const postMeal = async (meal: MealRequest) => {
   console.log('Adding meal');
   try {
     const response = await api.post(API.POST_MEAL, meal);

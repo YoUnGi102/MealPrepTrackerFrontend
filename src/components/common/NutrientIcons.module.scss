@@ -21,17 +21,25 @@
       opacity: 1;
     }
 
-    @include respond-below($breakpoint-md){
-        font-size: 0.75rem;
-        
+    @include respond-below($breakpoint-xxl){
+        font-size: 1.25rem;
+    }
+
+    @include respond-below($breakpoint-xl){
+        font-size: 1rem;
+    }
+
+    @include respond-below($breakpoint-sm){
         & * {
             margin: 0;
         }
     }
+
   }
   
   .emoji {
     display: inline-block;
+    filter: saturate(0.3) contrast(1.2);
   }
   
   .tooltip {

@@ -34,11 +34,11 @@ export const calculateMacrosPerPortion = (macros: Macros, portions: number): Mac
   if (portions <= 0) return initialMacros;
 
   return {
-    protein: Math.round(macros.protein / portions),
-    fat: Math.round(macros.fat / portions),
-    carbs: Math.round(macros.carbs / portions),
-    sugar: Math.round(macros.sugar / portions),
-    calories: Math.round(macros.calories / portions),
+    protein: Math.floor((macros.protein / portions * 10)) / 10,
+    fat: Math.floor((macros.fat / portions * 10)) / 10,
+    carbs: Math.floor((macros.carbs / portions * 10)) / 10,
+    sugar: Math.floor((macros.sugar / portions * 10)) / 10,
+    calories: Math.floor((macros.calories / portions * 10)) / 10,
   };
 };
 

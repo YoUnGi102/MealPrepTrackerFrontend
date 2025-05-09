@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Meal, MealIngredient, Ingredient } from '../../types';
+import { Meal, MealIngredient, Ingredient, SaveOption, MealRequest } from '../../types';
 import { postMeal } from './mealAPI';
+import { toast } from 'react-toastify';
 
 // export const fetchIngredients = createAsyncThunk<Ingredient[], string>(
 //   'ingredients/fetchIngredients',
@@ -10,9 +11,9 @@ import { postMeal } from './mealAPI';
 //   },
 // );
 
-export const addMeal = createAsyncThunk<Meal, Meal>(
+export const addMeal = createAsyncThunk<Meal, MealRequest>(
   'meals/addMeal',
-  async (data: Meal) => {
+  async (data: MealRequest) => {
     const response = await postMeal(data);
     return response.data;
   },
@@ -23,7 +24,15 @@ export interface MealState {
   loading: boolean;
   error: string | null;
   selectedMeal: Meal | null;
-  mealIngredients: MealIngredient[]; // when creating Meal
+  mealCreate: Meal;
+}
+
+const emptyMeal = {
+    name: '',
+    type: '',
+    portions: 0,
+    ingredients: [],
+    saveOption: SaveOption.MEAL
 }
 
 const initialState: MealState = {
@@ -31,37 +40,47 @@ const initialState: MealState = {
   loading: false,
   error: null,
   selectedMeal: null,
-  mealIngredients: [],
+  mealCreate: emptyMeal,
 };
 
 const mealsSlice = createSlice({
   name: 'meals',
   initialState,
   reducers: {
+    clearAddMeal(state) {
+      state.mealCreate = emptyMeal;
+    },
     addMealIngredient(state, action: PayloadAction<Ingredient>) {
-      for (const mi of state.mealIngredients) {
+      for (const mi of state.mealCreate.ingredients) {
         if (mi.ingredient.id == action.payload.id) {
           return;
         }
       }
-      state.mealIngredients = [
-        ...state.mealIngredients,
+      state.mealCreate.ingredients = [
+        ...state.mealCreate.ingredients,
         { ingredient: action.payload, quantity: 100 },
       ];
+      
     },
     updateMealIngredient(state, action: PayloadAction<MealIngredient>) {
-      state.mealIngredients.map((mi: MealIngredient) => {
-        if (mi.ingredient.id === action.payload.ingredient.id) {
-          mi.quantity = action.payload.quantity;
+     
+        state.mealCreate?.ingredients.map((mi: MealIngredient) => {
+          if (mi.ingredient.id === action.payload.ingredient.id) {
+            mi.quantity = action.payload.quantity;
+            return mi;
+          }
           return mi;
-        }
-        return mi;
-      });
+        });
+      
+      
     },
     removeMealIngredient(state, action: PayloadAction<number>) {
-      state.mealIngredients = state.mealIngredients.filter(
-        (mi) => mi.ingredient.id != action.payload,
-      );
+
+        state.mealCreate.ingredients = state.mealCreate.ingredients.filter(
+          (mi) => mi.ingredient.id != action.payload,
+        );
+      
+      
     },
   },
   extraReducers: (builder) => {
@@ -86,6 +105,8 @@ const mealsSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.selectedMeal = action.payload;
+        state.mealCreate = emptyMeal;
+        toast.success('Meal successfully added');
       })
       .addCase(addMeal.rejected, (state, action) => {
         state.loading = false;

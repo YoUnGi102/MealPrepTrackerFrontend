@@ -186,7 +186,7 @@ button:focus-visible {
   }
 }
 
-@media (min-width: 766px) {
+@media (min-width: 1200px) {
   #root {
     margin: 0;
     padding: 0;

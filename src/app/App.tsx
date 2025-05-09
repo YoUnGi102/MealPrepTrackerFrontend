@@ -20,8 +20,8 @@ const App = () => {
           <PageContainer>
             <AppRoutes />
           </PageContainer>
+          <ToastContainer position="top-right" autoClose={3000} />
         </Router>
-        <ToastContainer position="top-right" autoClose={3000} />
       </PersistGate>
     </Provider>
   );

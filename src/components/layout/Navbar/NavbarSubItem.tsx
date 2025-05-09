@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import styles from './NavbarSubItem.module.scss';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 const NavbarSubItem = ({
   children,
@@ -11,7 +13,7 @@ const NavbarSubItem = ({
 }) => {
   return (
     <Link to={link} className={styles.navbarSubItem}>
-      {children}
+      <FontAwesomeIcon icon={faCircle} /> {children}
     </Link>
   );
 };
