@@ -1,4 +1,4 @@
-import { Macros, MealIngredient, TotalMacros } from '@/types';
+import { Macros, MealIngredient, TotalMacros } from '@/types/entities';
 
 const initialMacros: Macros = { protein: 0, fat: 0, carbs: 0, sugar: 0, calories: 0}
 
@@ -42,3 +42,12 @@ export const calculateMacrosPerPortion = (macros: Macros, portions: number): Mac
   };
 };
 
+export const buildQueryFromSearchParams = (searchParams: URLSearchParams): string => {
+  const params: string[] = [];
+  searchParams.forEach((value, key) => {
+    if (value) {
+      params.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+    }
+  });
+  return params.length ? `?${params.join('&')}` : '';
+};

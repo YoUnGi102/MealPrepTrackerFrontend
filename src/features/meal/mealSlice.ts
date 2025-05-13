@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Meal, MealIngredient, Ingredient, SaveOption, MealRequest } from '../../types';
-import { postMeal } from './mealAPI';
+import { Meal, MealIngredient, Ingredient, SaveOption, MealRequest } from '../../types/entities';
+import { getMealsPaginated, postMeal } from './mealAPI';
 import { toast } from 'react-toastify';
+import { FridgeRequest } from '@/types/request/FridgeRequest';
+import { initialPaginated, Paginated } from '@/types/Paginated';
+import { act } from 'react';
 
 // export const fetchIngredients = createAsyncThunk<Ingredient[], string>(
 //   'ingredients/fetchIngredients',
@@ -19,8 +22,17 @@ export const addMeal = createAsyncThunk<Meal, MealRequest>(
   },
 );
 
+export const getFridgeMeals = createAsyncThunk<Paginated<Meal>, FridgeRequest>(
+  'fridge/meals',
+  async (data: FridgeRequest) => {
+    console.log(JSON.stringify(data));
+    const response = await getMealsPaginated(`pageIndex=${data.pageIndex || 0}&pageSize=${data.pageSize || 0}`);
+    return response;
+  }
+)
+
 export interface MealState {
-  ingredients: Meal[];
+  mealsPaginated: Paginated<Meal>;
   loading: boolean;
   error: string | null;
   selectedMeal: Meal | null;
@@ -35,20 +47,23 @@ const emptyMeal = {
     saveOption: SaveOption.MEAL
 }
 
+
 const initialState: MealState = {
-  ingredients: [],
+  mealsPaginated: {...initialPaginated},
   loading: false,
   error: null,
   selectedMeal: null,
   mealCreate: emptyMeal,
 };
 
+console.log(initialPaginated);
+
 const mealsSlice = createSlice({
   name: 'meals',
   initialState,
   reducers: {
     clearAddMeal(state) {
-      state.mealCreate = emptyMeal;
+      state.mealCreate = {...emptyMeal};
     },
     addMealIngredient(state, action: PayloadAction<Ingredient>) {
       for (const mi of state.mealCreate.ingredients) {
@@ -60,43 +75,37 @@ const mealsSlice = createSlice({
         ...state.mealCreate.ingredients,
         { ingredient: action.payload, quantity: 100 },
       ];
-      
     },
     updateMealIngredient(state, action: PayloadAction<MealIngredient>) {
-     
-        state.mealCreate?.ingredients.map((mi: MealIngredient) => {
-          if (mi.ingredient.id === action.payload.ingredient.id) {
-            mi.quantity = action.payload.quantity;
-            return mi;
-          }
-          return mi;
-        });
-      
-      
+      state.mealCreate?.ingredients.map((mi: MealIngredient) => {
+      if (mi.ingredient.id === action.payload.ingredient.id) {
+        mi.quantity = action.payload.quantity;
+        return mi;
+      }
+      return mi;
+      });
     },
     removeMealIngredient(state, action: PayloadAction<number>) {
-
         state.mealCreate.ingredients = state.mealCreate.ingredients.filter(
-          (mi) => mi.ingredient.id != action.payload,
-        );
-      
-      
+        (mi) => mi.ingredient.id != action.payload,
+      );
     },
   },
   extraReducers: (builder) => {
     builder
-      //       .addCase(fetchIngredients.pending, state => {
-      //         state.loading = true;
-      //         state.error = null;
-      //       })
-      //       .addCase(fetchIngredients.fulfilled, (state, action) => {
-      //         state.ingredients = action.payload;
-      //         state.loading = false;
-      //       })
-      //       .addCase(fetchIngredients.rejected, (state, action) => {
-      //         state.error = action.error.message || 'Something went wrong';
-      //         state.loading = false;
-      //       })
+      .addCase(getFridgeMeals.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getFridgeMeals.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.mealsPaginated = action.payload as Paginated<Meal>;
+        state.loading = false;
+      })
+      .addCase(getFridgeMeals.rejected, (state, action) => {
+        state.error = action.error.message || 'Something went wrong';
+        state.loading = false;
+      })
       .addCase(addMeal.pending, (state) => {
         state.loading = true;
         state.error = null;

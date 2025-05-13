@@ -6,7 +6,7 @@ export enum SaveOption {
   MEAL_RECIPE = 'mr'
 }
 
-export interface Meal {
+export interface Meal extends Macros {
   id?: number;
   name: string;
   type: string;

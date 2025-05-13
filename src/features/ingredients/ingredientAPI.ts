@@ -1,6 +1,6 @@
 import * as API from '../../utils/apiUrls';
 import api from '../../api';
-import { IngredientRequest } from '@/types';
+import { IngredientRequest } from '@/types/entities';
 
 export const getIngredients = async (query: string) => {
   console.log('Fetching Ingredients');

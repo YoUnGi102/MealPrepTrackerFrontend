@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../app/store';
-import { Meal, MealIngredient, MealRequest, SaveOption, TotalMacros } from '../../../types';
+import { Meal, MealIngredient, MealRequest, SaveOption, TotalMacros } from '../../../types/entities';
 import IngredientSearchBar from '../../../components/IngredientSearchBar';
 import { addMeal, addMealIngredient } from '../mealSlice';
 import { Button } from '@/components/ui/button';

@@ -1,4 +1,4 @@
-import { Macros } from "@/types";
+import { Macros } from "@/types/entities";
 import styles from "./NutrientIcons.module.scss";
 
 const nutrients = [

@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavbarItem link={''} icon={faBook} text={'Recipes'}>
           <NavbarSubItem link={'/ingredients'}>Ingredients</NavbarSubItem>
         </NavbarItem>
-        <NavbarItem link={''} icon={faUtensils} text={'Fridge'} />
+        <NavbarItem link={'/fridge'} icon={faUtensils} text={'Fridge'} />
         <NavbarItem link={''} icon={faUser} text={'Account'}>
           <NavbarSubItem link={''}>Profile</NavbarSubItem>
           <NavbarSubItem link={''}>Settings</NavbarSubItem>

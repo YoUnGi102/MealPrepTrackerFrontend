@@ -5,7 +5,7 @@ import {
   fetchIngredients,
   setSelectedIngredient,
 } from '../features/ingredients/ingredientsSlice';
-import { Ingredient } from '../types';
+import { Ingredient } from '../types/entities';
 import { AppDispatch, RootState } from '../app/store';
 import './IngredientSearchBar.css';
 

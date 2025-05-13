@@ -1,5 +1,5 @@
 import React from 'react';
-import { TotalMacros } from '@/types';
+import { TotalMacros } from '@/types/entities';
 import MacroBar from '@/components/ui/MacroBar';
 import './TotalMacrosView.css';
 import NutrientIcons from './common/NutrientIcons';

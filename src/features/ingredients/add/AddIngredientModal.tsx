@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { addIngredient } from '../ingredientsSlice';
-import { IngredientRequest } from '@/types';
+import { IngredientRequest } from '@/types/entities';
 import { AppDispatch } from '@/app/store';
 import './AddIngredientModal.css';
 

@@ -9,3 +9,4 @@ export const POST_INGREDIENT = `${backendURL}/api/ingredients`;
 
 // Meals
 export const POST_MEAL = `${backendURL}/api/meals`;
+export const GET_FRIDGE_MEALS_PAGINATED = (query?: string) => `${backendURL}/api/fridge/meals?${query || ''}`
